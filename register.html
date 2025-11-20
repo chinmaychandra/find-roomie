@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roomie Finder - Register</title>
+
+    <!-- PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(135deg, #1d976c, #93f9b9);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 25px 35px;
+            width: 480px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        label { font-weight: bold; }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 18px;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1d976c;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #msg {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Create Your Profile</h2>
+
+    <label>User ID</label>
+    <input type="number" id="id" placeholder="Enter new unique ID">
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter password">
+
+    <label>Name</label>
+    <input type="text" id="name" placeholder="Your name">
+
+    <label>Mobile No.</label>
+    <input type="text" id="mobile" placeholder="10-digit mobile">
+
+    <label>Email Address</label>
+    <input type="email" id="email" placeholder="email@example.com">
+
+    <label>Age</label>
+    <input type="number" id="age" min="16" max="65">
+
+    <label>Gender</label>
+    <select id="gender">
+        <option>male</option>
+        <option>female</option>
+        <option>others</option>
+    </select>
+
+    <label>Location</label>
+    <select id="location">
+        <option>mumbai</option>
+        <option>delhi</option>
+        <option>bangalore</option>
+        <option>hyderabad</option>
+        <option>ahmedabad</option>
+        <option>chennai</option>
+        <option>kolkata</option>
+        <option>pune</option>
+        <option>patna</option>
+        <option>jaipur</option>
+    </select>
+
+    <label>Specially-Abled</label>
+    <select id="abled">
+        <option>yes</option>
+        <option>no</option>
+    </select>
+
+    <label>Active Time</label>
+    <select id="active">
+        <option>morning-time</option>
+        <option>night-owl</option>
+        <option>humming bird</option>
+    </select>
+
+    <label>Consumption Habits</label>
+    <select id="consumption">
+        <option>only drinks</option>
+        <option>only smokes</option>
+        <option>both</option>
+        <option>none</option>
+    </select>
+
+    <label>Hygiene</label>
+    <select id="hygiene">
+        <option>dr. sanitizer</option>
+        <option>deo defender</option>
+        <option>forgotten toothbrush</option>
+    </select>
+
+    <label>Medical Condition</label>
+    <select id="condition">
+        <option>none</option>
+        <option>thyroid</option>
+        <option>diabetes</option>
+        <option>obesity</option>
+        <option>alzheimer’s</option>
+        <option>migraine</option>
+        <option>asthma</option>
+    </select>
+
+    <label>Status</label>
+    <select id="status">
+        <option>student</option>
+        <option>working</option>
+        <option>travelling</option>
+    </select>
+
+    <label>Diet</label>
+    <select id="diet">
+        <option>vegetarian</option>
+        <option>vegan</option>
+        <option>non-vegetarian</option>
+        <option>eggetarian</option>
+    </select>
+
+    <label>Noise Tolerance</label>
+    <select id="noise">
+        <option>quite</option>
+        <option>moderate</option>
+        <option>rock</option>
+    </select>
+
+    <label>Social Preference</label>
+    <select id="social">
+        <option>introvert</option>
+        <option>extrovert</option>
+        <option>ambivert</option>
+    </select>
+
+    <label>Hobbies</label>
+    <select id="hobbies">
+        <option>reading</option>
+        <option>gardening</option>
+        <option>playing a musical instrument</option>
+        <option>painting</option>
+        <option>cooking/baking</option>
+        <option>hiking</option>
+        <option>photography</option>
+        <option>writing</option>
+        <option>learning a new language</option>
+        <option>video games</option>
+    </select>
+
+    <button onclick="register()">Register</button>
+
+    <div id="msg"></div>
+</div>
+
+<py-script src="backend_register.py"></py-script>
+
+<script>
+async function register() {
+    let data = {
+        id: document.getElementById("id").value,
+        password: document.getElementById("password").value,
+        name: document.getElementById("name").value,
+        mobile: document.getElementById("mobile").value,
+        email: document.getElementById("email").value,
+        age: document.getElementById("age").value,
+        gender: document.getElementById("gender").value,
+        location: document.getElementById("location").value,
+        abled: document.getElementById("abled").value,
+        active: document.getElementById("active").value,
+        consumption: document.getElementById("consumption").value,
+        hygiene: document.getElementById("hygiene").value,
+        condition: document.getElementById("condition").value,
+        status: document.getElementById("status").value,
+        diet: document.getElementById("diet").value,
+        noise: document.getElementById("noise").value,
+        social: document.getElementById("social").value,
+        hobbies: document.getElementById("hobbies").value
+    };
+
+    const result = await pyscript.runtime.globals.get("register_user")(data);
+
+    const msg = document.getElementById("msg");
+    msg.style.display = "block";
+
+    if (result === "exists") {
+        msg.style.color = "red";
+        msg.innerText = "❌ ID already taken. Choose another ID.";
+    } else if (result === "success") {
+        msg.style.color = "green";
+        msg.innerText = "✅ Registration Successful! Redirecting...";
+        setTimeout(() => window.location.href = "login.html", 2000);
+    } else {
+        msg.style.color = "red";
+        msg.innerText = "❌ Error occurred.";
+    }
+}
+</script>
+
+</body>
+</html>

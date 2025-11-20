@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roomie Finder - Login</title>
+
+    <!-- PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+    <style>
+        body {
+            margin: 0; padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .container {
+            background: white; padding: 35px; width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        h1 { margin-bottom: 25px; color: #333; }
+        input {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            border-radius: 8px; border: 1px solid #bbb;
+        }
+        button {
+            width: 100%; padding: 12px; font-size: 16px;
+            border: none; border-radius: 8px; cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-login { background: #6a11cb; color: white; }
+        .btn-register { background: #eee; }
+        #error { color: red; display: none; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Sign In</h1>
+
+    <input type="text" id="userid" placeholder="Enter User ID">
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button class="btn-login" onclick="login()">Sign In</button>
+    <button class="btn-register" onclick="window.location='register.html'">Sign Up</button>
+
+    <div id="error">Invalid credentials. Try again.</div>
+</div>
+
+
+<!-- Load Python backend -->
+<py-script src="backend.py"></py-script>
+
+<script>
+    async function login() {
+        const id = document.getElementById("userid").value;
+        const pwd = document.getElementById("password").value;
+        const errorBox = document.getElementById("error");
+
+        errorBox.style.display = "none";
+
+        // CALL PYTHON FUNCTION
+        const result = await pyscript.runtime.globals.get("validate_credentials")(id, pwd);
+
+        if (result === true) {
+            window.location.href = "index.html?id=" + id;
+        } else {
+            errorBox.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
